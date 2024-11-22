@@ -2,7 +2,7 @@
 import { model } from 'mongoose';
 import { Schema } from 'mongoose';
 
-const ProductSchema = new Schema({
+export const ProductSchema = new Schema({
     name: {
         type: String,
         required: [true, 'Name cannot be empty']

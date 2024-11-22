@@ -16,7 +16,7 @@ app.use(express.json());
 
 // Registrar las rutas
 app.use('/api/restaurants', restaurantRoutes);
-app.use('/api/restaurants/:restaurantId', productRoutes);
-app.use('/api/restaurants/:restaurantId', orderRoutes);
+app.use('/api/restaurants', productRoutes);
+app.use('/api/restaurants', orderRoutes);
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

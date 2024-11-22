@@ -7,7 +7,7 @@ export const getOrdersByRestaurant = async (req: Request, res: Response) => {
         const { restaurantId } = req.params;
 
         // Buscar el restaurante y poblar los pedidos
-        const restaurant = await Restaurant.findById(restaurantId).populate('orders');
+        const restaurant = await Restaurant.findById(restaurantId);
 
         if (!restaurant) throw new Error('Restaurant not found');
 

@@ -1,13 +1,10 @@
 // src/models/Order.ts
 import { model } from 'mongoose';
 import { Schema } from 'mongoose';
+import { ProductSchema } from './Product';
 
-const OrderSchema = new Schema({
-    products: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Product',
-        required: [true, 'Products cannot be empty']
-    }],
+export const OrderSchema = new Schema({
+    products: [ProductSchema],
     total: {
         type: Number,
         required: [true, 'Total cannot be empty']
