@@ -1,41 +1,56 @@
-// RestaurantPage.tsx
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 
-import useProducts from '../hooks/useProducts';
 import useOrders from '../hooks/useOrders';
+import useDeleteOrder from '../hooks/useDeleteOrder';
+import OrderCard from '../components/OrderCard';
 import useOneRestaurant from '../hooks/useOneRestaurant';
 
-import ProductCard from '../components/ProductCard';
-import OrderCard from '../components/OrderCard';
-
 const RestaurantPage: React.FC = () => {
-    const { restaurantId } = useParams<{ restaurantId: string }>();
-    const id = restaurantId || 'defaultRestaurantId';
-    const { name, loading: nameLoading, error: nameError } = useOneRestaurant(id);
-    const { products, loading: productsLoading, error: productsError } = useProducts(id);
-    const { orders, loading: ordersLoading, error: ordersError } = useOrders(id);
+  const { restaurantId } = useParams<{ restaurantId: string }>();
+  const { name, loading: nameLoading, error: nameError } = useOneRestaurant(restaurantId || '');
 
-    if (nameLoading || productsLoading || ordersLoading) return <p>Loading...</p>;
-    if (nameError || productsError || ordersError) return <p>Error loading data</p>;
+  const { orders, loading: orderLoading, error: orderError } = useOrders(restaurantId || '');
+  const [localOrders, setLocalOrders] = useState(orders);
+  const { deleteOrder, loading: deleteLoading, error: deleteError } = useDeleteOrder();
 
-    return (
-        <div>
-            <h1>{name}</h1>
-            <h2>Products</h2>
-                <div>
-                    {products.map((product) => (
-                    <ProductCard key={product._id} name={product.name} price={product.price} />
-                    ))}
-                </div>
-            <h2>Orders</h2>
-                <div>
-                    {orders.map((order) => (
-                    <OrderCard key={order._id} products={order.products} total={order.total} />
-                    ))}
-                </div>
-        </div>
-    );
+  const navigate = useNavigate();
+
+  useEffect(() => { // mantiene actualizado orders con localOrders
+    setLocalOrders(orders);
+  }, [orders]);
+
+  if (orderLoading || nameLoading || deleteLoading) return <p>Loading...</p>;
+  if (orderError || nameError || deleteError) return <p>Error loading data</p>;
+
+
+  const handleDeleteOrder = async (orderId: string) => {
+    if (restaurantId) {
+      await deleteOrder(restaurantId, orderId);
+      // Filtra la orden eliminada del estado local
+      setLocalOrders((prevOrders) => prevOrders.filter((order) => order._id !== orderId));
+    }
+  };
+
+  return (
+    <div>
+      <h1>Orders for Restaurant {name}</h1>
+      <button onClick={() => navigate(`/restaurant/${restaurantId}/new-order`)}>Add New Order</button>
+
+      {localOrders?.length === 0 ? (
+        <p>No orders yet</p>
+      ) : (
+        localOrders.map((order) => (
+          <OrderCard
+            key={order._id} 
+            products={order.products} 
+            total={order.total}
+            onDelete={() => handleDeleteOrder(order._id)}
+          />
+        ))
+      )}
+    </div>
+  );
 };
 
 export default RestaurantPage;
