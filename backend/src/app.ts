@@ -4,6 +4,9 @@ import restaurantRoutes from './routes/Restaurant';
 import productRoutes from './routes/Product';
 import orderRoutes from './routes/Order';
 import { connectToDatabase } from './database';
+import cors from 'cors';
+
+
 
 dotenv.config();
 
@@ -13,6 +16,9 @@ const PORT = process.env.PORT;
 connectToDatabase();
 
 app.use(express.json());
+
+// Configuración básica para permitir solicitudes desde cualquier origen
+app.use(cors());
 
 // Registrar las rutas
 app.use('/api/restaurants', restaurantRoutes);
