@@ -14,9 +14,7 @@ const useRestaurants = () => {
   useEffect(() => {
     const fetchRestaurants = async () => {
       try {
-        console.log("holaaaaa");
         const response = await api.get('/restaurants/names'); // Endpoint del backend
-        console.log('Response data:', response.data);
         setRestaurants(response.data);
       } catch (err) {
         setError('Failed to fetch restaurants.');
