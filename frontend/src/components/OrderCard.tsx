@@ -1,7 +1,7 @@
 import ProductFromOrderCard from "./ProductFromOrderCard"; // Importa el componente de producto
 
 interface OrderCardProps {
-  products: { name: string; price: number }[];  // Lista de productos en la orden
+  products: { _id: string; name: string; price: number; quantity: number }[];  // Lista de productos en la orden
   total: number; // Total de la orden
   onDelete: () => void; // funcion para eliminar
 }
@@ -13,8 +13,8 @@ const OrderCard: React.FC<OrderCardProps> = ({ products, total, onDelete}) => {
       <div>
         {/* Mapeamos los productos dentro de la orden */}
         {products.map((product) => (
-          <ProductFromOrderCard key={`${product.name}-${product.price}`} 
-          name={product.name} price={product.price} />
+          <ProductFromOrderCard key={product._id} 
+          name={product.name} price={product.price} quantity={product.quantity}/>
         ))}
       </div>
       <p>Total: ${total}</p>

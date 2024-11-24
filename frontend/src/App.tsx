@@ -3,7 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './pages/HomePage'; // Página de inicio con la lista de restaurantes
 import RestaurantPage from './pages/RestaurantPage'; // Aún no existe, la crearemos más tarde
-import NewOrderPage from './pages/NewOrderPage'
+import NewOrderPage from './pages/NewOrderPage/NewOrderPage'
 
 const App: React.FC = () => {
 

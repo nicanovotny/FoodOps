@@ -6,7 +6,6 @@ export const getOrdersByRestaurant = async (req: Request, res: Response) => {
     try {
         const { restaurantId } = req.params;
 
-        // Buscar el restaurante y poblar los pedidos
         const restaurant = await Restaurant.findById(restaurantId);
 
         if (!restaurant) throw new Error('Restaurant not found');
@@ -33,7 +32,7 @@ export const postOrder = async (req: Request, res: Response) => {
         if (!restaurant) throw new Error('Restaurant not found');
 
         // Calcular el total
-        const total = products.reduce((sum, product) => sum + product.price, 0);
+        const total = products.reduce((sum, product) => sum + (product.price * product.quantity), 0);
 
         // Crear la orden
         const newOrder = { products: products, total };

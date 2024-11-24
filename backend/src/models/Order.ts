@@ -1,14 +1,28 @@
 // src/models/Order.ts
-import { model } from 'mongoose';
-import { Schema } from 'mongoose';
-import { ProductSchema } from './Product';
+import { model, Schema } from 'mongoose';
+
+const ProductInOrderSchema = new Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  price: {
+    type: Number,
+    required: true,
+  },
+  quantity: {
+    type: Number,
+    required: true,
+    min: [1, 'Quantity must be at least 1'],
+  },
+});
 
 export const OrderSchema = new Schema({
-    products: [ProductSchema],
-    total: {
-        type: Number,
-        required: [true, 'Total cannot be empty']
-    }
+  products: [ProductInOrderSchema], // Lista de productos con sus cantidades
+  total: {
+    type: Number,
+    required: [true, 'Total cannot be empty'],
+  },
 });
 
 const Order = model('Order', OrderSchema);
