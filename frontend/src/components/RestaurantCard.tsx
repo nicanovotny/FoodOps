@@ -9,9 +9,9 @@ interface RestaurantCardProps {
 
 const RestaurantCard: React.FC<RestaurantCardProps> = ({ name, restaurantId }) => {
   return (
-    <div>
+    <div className="card bg-secondary shadow-md rounded-lg p-4 mb-4 hover:shadow-lg transition-shadow">
       <Link to={`/restaurant/${restaurantId}`}>
-        <h2>{name}</h2>
+        <h2 className="text-xl font-semibold text-center text-accent font-sans">{name}</h2>
       </Link>
     </div>
   );
