@@ -28,6 +28,10 @@ const NewOrderPage: React.FC = () => {
    }
  };
 
+ const handleCancel = () => {
+    navigate(`/restaurant/${restaurantId}`);
+  };
+
 
  if (loading) return <p>Loading...</p>;
  if (error) return <p>{error}</p>;
@@ -36,6 +40,7 @@ const NewOrderPage: React.FC = () => {
  return (
    <div>
      <h1>Select Products for New Order</h1>
+     <button onClick={handleCancel}>Cancel</button>
      {products.map((product) => (
        <ProductCard
          key={product._id}

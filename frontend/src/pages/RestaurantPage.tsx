@@ -32,8 +32,13 @@ const RestaurantPage: React.FC = () => {
     }
   };
 
+  const handleBackToHome = () => {
+    navigate('/');
+  };
+
   return (
     <div>
+      <button onClick={handleBackToHome}>Back to Home</button>
       <h1>Orders for Restaurant {name}</h1>
       <button onClick={() => navigate(`/restaurant/${restaurantId}/new-order`)}>Add New Order</button>
 
