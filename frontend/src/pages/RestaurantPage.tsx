@@ -7,6 +7,7 @@ import OrderCard from '../components/OrderCard';
 import useOneRestaurant from '../hooks/useOneRestaurant';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse } from '@fortawesome/free-solid-svg-icons';
+import LoadingMessage from '../components/Style/LoadingMessage';
 
 
 const RestaurantPage: React.FC = () => {
@@ -23,11 +24,7 @@ const RestaurantPage: React.FC = () => {
     setLocalOrders(orders);
   }, [orders]);
 
-  if (orderLoading || nameLoading || deleteLoading) return (
-    <div className="min-h-screen bg-base-200 flex items-center justify-center">
-  <p className="text-xl text-center text-white bg-primary py-2 px-4 rounded-lg">Loading...</p>
-</div>
-    );
+  if (orderLoading || nameLoading || deleteLoading) return <LoadingMessage message="Loading..." />;
   if (orderError || nameError || deleteError) return <p>Error loading data</p>;
 
 
@@ -38,14 +35,11 @@ const RestaurantPage: React.FC = () => {
     }
   };
 
-  const handleBackToHome = () => {
-    navigate('/');
-  };
-
   return (
     <div className="min-h-screen bg-base-200">
+      
       <button
-        onClick={handleBackToHome}
+        onClick={() => navigate('/')}
         className="btn btn-secondary text-white font-medium px-4 py-2 rounded-md shadow-md hover:bg-primary hover:text-base-100 transition-colors"
         >
         <FontAwesomeIcon icon={faHouse} className="text-3xl" />
@@ -63,7 +57,6 @@ const RestaurantPage: React.FC = () => {
         Add New Order
       </button>
       </div>
-
 
       {localOrders?.length === 0 ? (
         <p className="text-lg text-neutral font-medium text-center mt-8">

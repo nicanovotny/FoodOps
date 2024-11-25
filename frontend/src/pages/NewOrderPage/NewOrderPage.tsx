@@ -4,6 +4,7 @@ import useProducts from '../../hooks/useProducts';
 import useAddOrder from '../../hooks/useAddOrder';
 import ProductCard from '../../components/ProductCard';
 import { handleIncrement, handleDecrement } from './utils';
+import LoadingMessage from '../../components/Style/LoadingMessage';
 
 
 const NewOrderPage: React.FC = () => {
@@ -33,14 +34,26 @@ const NewOrderPage: React.FC = () => {
   };
 
 
- if (loading) return <p>Loading...</p>;
+ if (loading) return <LoadingMessage message="Loading..." /> ;
  if (error) return <p>{error}</p>;
 
 
  return (
-   <div>
-     <h1>Select Products for New Order</h1>
-     <button onClick={handleCancel}>Cancel</button>
+   <div className="min-h-screen bg-base-200">
+
+     <h1 className="text-3xl font-bold text-center text-primary pt-8 mb-6">
+        Select Products for New Order
+     </h1>
+
+     <div className="flex justify-center mt-4 mb-6">
+        <button
+        onClick={handleCancel}
+        className="btn btn-outline btn-error"
+        >
+        Cancel
+        </button>
+    </div>
+
      {products.map((product) => (
        <ProductCard
          key={product._id}
@@ -56,9 +69,19 @@ const NewOrderPage: React.FC = () => {
          }
        />
      ))}
-     <button onClick={handleSubmit} disabled={addLoading}>
-       {addLoading ? 'Creating order...' : 'Create Order'}
-     </button>
+
+    <div className="flex justify-center mt-6 mb-4">
+    <button
+        onClick={handleSubmit}
+        disabled={addLoading}
+        className={`btn btn-primary text-white font-medium px-6 py-3 rounded-md shadow-md transition-colors 
+        ${addLoading ? 'bg-gray-400 cursor-not-allowed' : 'hover:bg-primary-dark'} 
+        mt-4 mb-4`}
+    >
+        {addLoading ? 'Creating order...' : 'Create Order'}
+    </button>
+    </div>
+
      {addError && <p>{addError}</p>}
    </div>
  );
