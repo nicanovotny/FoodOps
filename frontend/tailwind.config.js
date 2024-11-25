@@ -18,17 +18,18 @@ module.exports = {
         themes: [
           {
             elegantBrown: {
-              primary: "#7B3F00", // Marrón elegante para elementos principales
-              secondary: "#D5B894", // Marrón claro para elementos secundarios
-              accent: "#8A5A44", // Tonos para detalles
-              neutral: "#5B4636", // Tonos neutros
-              "base-100": "#F5F5F3", // Fondo principal claro
-              "base-200": "#EDE6DB", // Fondo secundario claro
-              "base-300": "#D6CEC3", // Fondo terciario
-              info: "#A38C79", // Informativo
-              success: "#928D72", // Éxito
-              warning: "#C1A56B", // Advertencia
+              primary: "#7B3F00", // dark brown
+              secondary: "#D5B894", // light brown
+              accent: "#8A5A44", // Shades for accents
+              neutral: "#5B4636", // Neutral tones
+              "base-100": "#F5F5F3", // Main light background
+              "base-200": "#EDE6DB", // Secondary light background
+              "base-300": "#D6CEC3", // Tertiary background
+              info: "#A38C79", // Informative
+              success: "#928D72", // Success
+              warning: "#C1A56B", // Warning
               error: "#A45B41", // Error
+              delete: "#B02A0B",
             },
           },
         ],

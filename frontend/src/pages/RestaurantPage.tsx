@@ -5,6 +5,9 @@ import useOrders from '../hooks/useOrders';
 import useDeleteOrder from '../hooks/useDeleteOrder';
 import OrderCard from '../components/OrderCard';
 import useOneRestaurant from '../hooks/useOneRestaurant';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHouse } from '@fortawesome/free-solid-svg-icons';
+
 
 const RestaurantPage: React.FC = () => {
   const { restaurantId } = useParams<{ restaurantId: string }>();
@@ -20,7 +23,11 @@ const RestaurantPage: React.FC = () => {
     setLocalOrders(orders);
   }, [orders]);
 
-  if (orderLoading || nameLoading || deleteLoading) return <p>Loading...</p>;
+  if (orderLoading || nameLoading || deleteLoading) return (
+    <div className="min-h-screen bg-base-200 flex items-center justify-center">
+  <p className="text-xl text-center text-white bg-primary py-2 px-4 rounded-lg">Loading...</p>
+</div>
+    );
   if (orderError || nameError || deleteError) return <p>Error loading data</p>;
 
 
@@ -36,17 +43,38 @@ const RestaurantPage: React.FC = () => {
   };
 
   return (
-    <div>
-      <button onClick={handleBackToHome}>Back to Home</button>
-      <h1>Orders for Restaurant {name}</h1>
-      <button onClick={() => navigate(`/restaurant/${restaurantId}/new-order`)}>Add New Order</button>
+    <div className="min-h-screen bg-base-200">
+      <button
+        onClick={handleBackToHome}
+        className="btn btn-secondary text-white font-medium px-4 py-2 rounded-md shadow-md hover:bg-primary hover:text-base-100 transition-colors"
+        >
+        <FontAwesomeIcon icon={faHouse} className="text-3xl" />
+      </button>
+
+      <h1 className="text-3xl font-semibold text-primary text-center mt-8 mb-6">
+        Orders for {name}
+      </h1>
+
+      <div className="flex justify-center my-4">
+      <button
+        onClick={() => navigate(`/restaurant/${restaurantId}/new-order`)}
+        className="btn btn-primary mt-4"
+      >
+        Add New Order
+      </button>
+      </div>
+
 
       {localOrders?.length === 0 ? (
-        <p>No orders yet</p>
+        <p className="text-lg text-neutral font-medium text-center mt-8">
+            No orders? Guess it is time for a snack!
+        </p>
+
       ) : (
-        localOrders.map((order) => (
+        localOrders.map((order, index) => (
           <OrderCard
             key={order._id} 
+            orderIndex={index}
             products={order.products} 
             total={order.total}
             onDelete={() => handleDeleteOrder(order._id)}

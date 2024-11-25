@@ -17,12 +17,16 @@ const HomePage: React.FC = () => {
     }
   };
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return (
+    <div className="min-h-screen bg-base-200 flex items-center justify-center">
+  <p className="text-xl text-center text-white bg-primary py-2 px-4 rounded-lg">Loading...</p>
+</div>
+    );
   if (error) return <p>{error}</p>;
 
   return (
     <div className="bg-base-200">
-      <h1 className="text-4xl font-semibold text-center text-primary pt-8 mb-8 font-serif space-x-6">
+      <h1 className="text-4xl font-semibold text-center text-primary pt-8 mb-8 space-x-6">
       <FontAwesomeIcon icon={faBurger} className="text-4xl" />
       <span>FoodOps</span>
       <FontAwesomeIcon icon={faBurger} className="text-4xl" />

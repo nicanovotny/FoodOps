@@ -8,12 +8,13 @@ interface ProductFromOrderCardProps {
   
   const ProductFromOrderCard: React.FC<ProductFromOrderCardProps> = ({ name, price, quantity }) => {
     return (
-      <div>
-        <h3>{name}</h3>
-        <p>${price}</p>
-        <p>{quantity}</p>
+      <div className="border border-neutral rounded-lg p-2 bg-base-100 mb-2 flex justify-between items-center max-w-xl mx-auto">
+        <h3 className="text-sm font-semibold text-primary truncate w-1/3">{name}</h3>
+        <p className="text-sm text-neutral w-1/3 text-center">${price}</p>
+        <p className="text-sm text-neutral w-1/3 text-center">x {quantity}</p>
       </div>
     );
   };
-
+  
   export default ProductFromOrderCard;
+  
