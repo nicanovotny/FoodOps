@@ -9,9 +9,9 @@ export const getRestaurants = async (req: Request, res: Response) => {
         const skip = (parseInt(page as string) - 1) * limitNumber;
 
         const restaurants = await Restaurant.find()
-        .select('name') // Solo obtenemos el campo `name`
-        .skip(skip)     // Saltar los documentos ya paginados
-        .limit(limitNumber); // Limitar la cantidad de resultados
+        .select('name') 
+        .skip(skip)    
+        .limit(limitNumber); 
 
         res.json(restaurants);
     } catch (error) {

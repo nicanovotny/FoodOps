@@ -1,4 +1,3 @@
-// src/models/Restaurant.ts
 import { model } from 'mongoose';
 import { Schema } from 'mongoose';
 import { ProductSchema } from './Product';

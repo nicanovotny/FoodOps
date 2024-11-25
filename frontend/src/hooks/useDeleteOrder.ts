@@ -12,7 +12,6 @@ const useDeleteOrder = () => {
 
       await api.delete(`/restaurants/${restaurantId}/orders/${orderId}`);
 
-      // Aquí podrías actualizar el estado de las órdenes después de la eliminación.
     } catch (err: any) {
       setError('Error al eliminar la orden');
       console.error(err);

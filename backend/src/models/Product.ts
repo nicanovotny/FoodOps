@@ -1,4 +1,3 @@
-// src/models/Product.ts
 import { model } from 'mongoose';
 import { Schema } from 'mongoose';
 

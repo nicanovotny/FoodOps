@@ -11,12 +11,12 @@ const RestaurantPage: React.FC = () => {
   const { name, loading: nameLoading, error: nameError } = useOneRestaurant(restaurantId || '');
 
   const { orders, loading: orderLoading, error: orderError } = useOrders(restaurantId || '');
-  const [localOrders, setLocalOrders] = useState(orders);
+  const [localOrders, setLocalOrders] = useState(orders); // to keep orders rendered
   const { deleteOrder, loading: deleteLoading, error: deleteError } = useDeleteOrder();
 
   const navigate = useNavigate();
 
-  useEffect(() => { // mantiene actualizado orders con localOrders
+  useEffect(() => { 
     setLocalOrders(orders);
   }, [orders]);
 
@@ -27,7 +27,6 @@ const RestaurantPage: React.FC = () => {
   const handleDeleteOrder = async (orderId: string) => {
     if (restaurantId) {
       await deleteOrder(restaurantId, orderId);
-      // Filtra la orden eliminada del estado local
       setLocalOrders((prevOrders) => prevOrders.filter((order) => order._id !== orderId));
     }
   };

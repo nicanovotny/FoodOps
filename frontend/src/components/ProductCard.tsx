@@ -1,10 +1,10 @@
 import React from 'react';
 
 interface ProductCardProps {
-  product: { _id: string; name: string; price: number }; // Información básica del producto
-  onIncrement: () => void; // Función para incrementar la cantidad
-  onDecrement: () => void; // Función para decrementar la cantidad
-  currentQuantity: number; // Cantidad seleccionada del producto
+  product: { _id: string; name: string; price: number }; 
+  onIncrement: () => void; 
+  onDecrement: () => void; 
+  currentQuantity: number; 
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
@@ -18,11 +18,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
       <h3>{product.name}</h3>
       <p>${product.price}</p>
       <div>
-        {/* Botón para decrementar */}
         <button onClick={onDecrement}>-</button>
-        {/* Cantidad seleccionada */}
         <span>{currentQuantity}</span>
-        {/* Botón para incrementar */}
         <button onClick={onIncrement}>+</button>
       </div>
     </div>

@@ -10,12 +10,11 @@ const useRestaurants = (page: number, limit: number) => {
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const [hasMore, setHasMore] = useState<boolean>(true); // Si hay más restaurantes por cargar
+  const [hasMore, setHasMore] = useState<boolean>(true); // restaurants to be fetched
 
   useEffect(() => {
     const fetchRestaurants = async () => {
         try {
-            // Agregamos los parámetros de paginación
             const response = await api.get('/restaurants/names', {
                 params: {
                     page,
@@ -24,12 +23,9 @@ const useRestaurants = (page: number, limit: number) => {
             });
 
             const newRestaurants = response.data;
-            // Si la cantidad de restaurantes obtenidos es menor que el límite, no hay más productos
             if (newRestaurants.length < limit) {
                 setHasMore(false);
             }
-
-            // Añadimos los nuevos productos al estado
             setRestaurants((prevRestaurants) => [...prevRestaurants, ...newRestaurants]);
         } catch (err) {
             setError('Error fetching restaurants');
@@ -39,7 +35,7 @@ const useRestaurants = (page: number, limit: number) => {
     };
 
     fetchRestaurants();
-}, [page, limit]); // Dependencias incluyen el restaurantId, page y limit
+}, [page, limit]);
 return { restaurants, loading, hasMore, error };
 };
 

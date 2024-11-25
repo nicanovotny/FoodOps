@@ -8,8 +8,6 @@ type Product = {
     quantity: number;
   };
   
-  
-  // Maneja el decremento de la cantidad de un producto
   export const handleDecrement = (
     product: Product,
     setSelectedProducts: React.Dispatch<React.SetStateAction<ProductInOrder[]>>
@@ -29,7 +27,6 @@ type Product = {
     });
   };
   
-  // Maneja el incremento de la cantidad de un producto
   export const handleIncrement = (
     product: Product,
     setSelectedProducts: React.Dispatch<React.SetStateAction<ProductInOrder[]>>

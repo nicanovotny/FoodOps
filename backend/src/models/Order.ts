@@ -1,4 +1,3 @@
-// src/models/Order.ts
 import { model, Schema } from 'mongoose';
 
 const ProductInOrderSchema = new Schema({
@@ -18,7 +17,7 @@ const ProductInOrderSchema = new Schema({
 });
 
 export const OrderSchema = new Schema({
-  products: [ProductInOrderSchema], // Lista de productos con sus cantidades
+  products: [ProductInOrderSchema], 
   total: {
     type: Number,
     required: [true, 'Total cannot be empty'],

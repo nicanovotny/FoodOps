@@ -10,7 +10,6 @@ interface RestaurantCardProps {
 const RestaurantCard: React.FC<RestaurantCardProps> = ({ name, restaurantId }) => {
   return (
     <div>
-      {/* Usamos Link para navegar a la página del restaurante */}
       <Link to={`/restaurant/${restaurantId}`}>
         <h2>{name}</h2>
       </Link>

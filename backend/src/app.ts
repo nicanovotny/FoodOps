@@ -17,10 +17,8 @@ connectToDatabase();
 
 app.use(express.json());
 
-// Configuración básica para permitir solicitudes desde cualquier origen
 app.use(cors());
 
-// Registrar las rutas
 app.use('/api/restaurants', restaurantRoutes);
 app.use('/api/restaurants', productRoutes);
 app.use('/api/restaurants', orderRoutes);
