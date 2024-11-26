@@ -31,10 +31,16 @@ export const postOrder = async (req: Request, res: Response) => {
         const { restaurantId } = req.params; 
         const { products } = req.body; 
 
-        if (!Array.isArray(products) || products.length === 0) throw new Error('Products are required');
+        if (!Array.isArray(products) || products.length === 0) {
+            res.status(400).json({ message: "Products are required" });
+            return;
+        }
 
         const restaurant = await Restaurant.findById(restaurantId);
-        if (!restaurant) throw new Error('Restaurant not found');
+        if (!restaurant) {
+            res.status(404).json({ message: "Restaurant not found." });
+            return;
+        }
 
         const total = products.reduce((sum, product) => sum + (product.price * product.quantity), 0);
 
@@ -58,13 +64,19 @@ export const deleteOrder = async (req: Request, res: Response) => {
 
         const restaurant = await Restaurant.findById(restaurantId);
 
-        if (!restaurant) throw new Error('Restaurant not found');
+        if (!restaurant){
+            res.status(404).json({ message: "Restaurant not found." });
+            return;
+        }
 
         const orderIndex = restaurant.orders.findIndex(
             (order) => order._id.toString() === orderId
         );
 
-        if (orderIndex === -1) throw new Error('Order not found');
+        if (orderIndex === -1) {
+            res.status(404).json({ message: "Order not found." });
+            return;
+        }
 
         restaurant.orders.splice(orderIndex, 1);
 
