@@ -1,56 +1,85 @@
-FOOD OPS
 
-Backend
+# Food Ops
 
-Conectado a una base de datos MongoDB, codeado con Express.js
-Pre-requisitos
-Tener instalado Node.js (version 16 por lo menos)
-Tener instalado npm
-Tener una base de datos MongoDB en funcionamiento
+**Food Ops** es una aplicación de gestión para restaurantes, productos y pedidos, desarrollada con Node.js, Express.js, React y MongoDB.
 
-Configuracion
+## Pre-requisitos
 
-Clonar el repositorio
-   > git clone https://github.com/nicanovotny/FoodOps.git
-   > cd backend
+Antes de comenzar, asegúrate de tener lo siguiente instalado:
 
-Instalar dependencias
+- **Node.js** (versión 16 o superior)
+- **npm** (gestor de paquetes de Node.js)
+- **MongoDB** en funcionamiento (local o en la nube)
 
-> npm install
+## Clonar el Repositorio
 
-Configurar las variables de entorno
+Para clonar el repositorio, usa el siguiente comando:
 
-En el archivo .env, actualizar la URL para conectarse a la base de datos MongoDB deseada
+```bash
+git clone https://github.com/nicanovotny/FoodOps.git
+```
 
+## Backend
+El backend está construido con Express.js y se conecta a una base de datos MongoDB.
 
-Ejecución del proyecto
-Construir el proyecto
-   > npm run build
+### Pasos para el Backend
 
+- Navega a la carpeta backend:
 
-Ejecutar el servidor en modo producción
-   > npm start
+```bash
+cd backend
+```
+- Instala las dependencias:
 
+```bash
+npm install
+```
+- Configura las variables de entorno:
 
-Testing
+Crea o edita el archivo .env y actualiza la URL de la base de datos MongoDB a la que deseas conectarte.
 
-Este proyecto utiliza Jest para las pruebas. No es necesario configurar una base de datos MongoDB local, ya que las pruebas se ejecutan con una base de datos en memoria proporcionada por MongoDB Memory Server. Esta base de datos se crea y elimina automáticamente durante la ejecución de las pruebas.
-Desde el backend, ejecutar:
-> npm test
+- Construye el proyecto:
 
+```bash
+npm run build
+```
+- Ejecuta el servidor en modo producción:
 
-Frontend
+```bash
+npm start
+```
+### Testing
+Este proyecto utiliza Jest para realizar pruebas. No es necesario tener una base de datos MongoDB local, ya que se usa una base de datos en memoria proporcionada por MongoDB Memory Server, que se crea y elimina automáticamente durante las pruebas.
+- Para ejecutar las pruebas:
 
-Desarrollado usando React en TypeScript
+```bash
+npm test
+```
+## Frontend
+El frontend está desarrollado con React y TypeScript.
+### Pasos para el Frontend
+- Navega a la carpeta frontend:
+```bash
+cd frontend
+```
+- Crea un archivo .env en la carpeta frontend y agrega la siguiente configuración:
+```bash
+REACT_APP_API_URL=<insertar URL del backend>
+```
+Asegúrate de reemplazar <insertar URL del backend> con la URL donde está corriendo el backend.
+### Ejecución del Frontend
+- Instala las dependencias:
 
-> cd frontend
+```bash
+npm install
+```
+- Construye el proyecto:
 
+```bash
+npm run build
+```
+- Ejecuta el proyecto:
 
-/////////// variable de entorno
-
-Ejecución del proyecto
-Construir el proyecto
-
-   > npm run build
-Ejecutar el proyecto
-   > npm start
+```bash
+npm start
+```
