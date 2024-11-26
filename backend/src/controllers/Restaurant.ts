@@ -3,7 +3,7 @@ import Restaurant from '../models/Restaurant';
 
 export const getRestaurants = async (req: Request, res: Response) => {
     try {
-        const { page, limit } = req.query;
+        const { page = 1, limit = 10} = req.query;
         const limitNumber = parseInt(limit as string)
         if (isNaN(limitNumber) || limitNumber <= 0) throw new Error('Invalid limit')
         const skip = (parseInt(page as string) - 1) * limitNumber;

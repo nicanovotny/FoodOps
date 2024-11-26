@@ -1,13 +1,22 @@
 import { Request, Response } from 'express';
 import Restaurant from '../models/Restaurant';
+import mongoose from 'mongoose';
 
 export const getOrdersByRestaurant = async (req: Request, res: Response) => {
     try {
         const { restaurantId } = req.params;
 
-        const restaurant = await Restaurant.findById(restaurantId);
+        if (!mongoose.Types.ObjectId.isValid(restaurantId)) {
+            res.status(400).json({ message: "Invalid restaurant ID" });
+            return;
+        }
 
-        if (!restaurant) throw new Error('Restaurant not found');
+        const restaurant = await Restaurant.findById(restaurantId);
+        
+        if (!restaurant) {
+            res.status(404).json({ message: "Restaurant not found." });
+            return;
+        }
 
         res.json(restaurant.orders);
     } catch (error) {
