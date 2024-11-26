@@ -26,11 +26,8 @@ En el archivo .env, actualizar la URL para conectarse a la base de datos MongoDB
 Ejecución del proyecto
 Construir el proyecto
    > npm run build
-Ejecutar el servidor en modo desarrollo
 
-Para ejecutar el servidor con recarga automática en caso de cambios:
 
-   > npm run dev
 Ejecutar el servidor en modo producción
    > npm start
 
